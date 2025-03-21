@@ -97,8 +97,7 @@ class DioClient {
   void _handleDioError(DioException error) {
     if (error.response != null) {
       // Server error (e.g., 400, 500)
-      throw ServerException(
-          errorMessageModel: ErrorMessageModel.fromJson(error.response!.data));
+      throw ServerException(ErrorMessageModel.fromJson(error.response!.data));
     } else {
       // Network error (no response)
       log('Something went Wrong: ${error.message}');

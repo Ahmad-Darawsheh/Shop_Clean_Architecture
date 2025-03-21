@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app_clean/core/styles/colors.dart';
+import 'package:shop_app_clean/core/services/services_locator.dart';
 import 'package:shop_app_clean/core/styles/theme_data.dart';
-import 'package:shop_app_clean/features/login/presntation/pages/login_page.dart';
+import 'package:shop_app_clean/features/login/presentation/pages/login_page.dart';
 
 void main() {
+  ServicesLocator().setupLocator();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
