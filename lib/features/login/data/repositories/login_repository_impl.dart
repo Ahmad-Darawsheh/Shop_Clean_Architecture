@@ -1,8 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
-
 import 'package:shop_app_clean/core/error/exceptions.dart';
 import 'package:shop_app_clean/core/error/failures.dart';
 import 'package:shop_app_clean/features/login/data/datasources/login_remote_data_source.dart';
@@ -19,7 +15,7 @@ class LoginRepositoryImpl implements LoginRepository {
       String email, String password) async {
     try {
       final result = await loginRemoteDataSource.login(email, password);
-     
+
       return Right(result.toEntity());
     } on ServerException catch (e) {
       return Left(ServerFailure(e.errorMessageModel.message));

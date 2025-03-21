@@ -8,11 +8,11 @@ final class LoginInitial extends LoginState {}
 final class LoginLoading extends LoginState {}
 
 final class LoginSuccess extends LoginState {
-  LoginEntity loginEntity;
+  final LoginEntity loginEntity;
   LoginSuccess(this.loginEntity);
 }
 
 final class LoginError extends LoginState {
-  String message;
+  final String message;
   LoginError(this.message);
 }
