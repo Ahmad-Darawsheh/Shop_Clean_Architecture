@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app_clean/features/register/presentation/pages/register_page.dart';
 
 class NoAccountRedirectRegister extends StatelessWidget {
   const NoAccountRedirectRegister({
@@ -13,7 +14,9 @@ class NoAccountRedirectRegister extends StatelessWidget {
         const Text("Don't have an account?"),
         TextButton(
           onPressed: () {
-            // TODO: Navigate to register page
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const RegisterPage();
+            }));
           },
           child: const Text('Sign Up'),
         ),
