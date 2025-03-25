@@ -1,20 +1,23 @@
 import 'package:get_it/get_it.dart';
 import 'package:shop_app_clean/core/network/api_service.dart';
-import 'package:shop_app_clean/features/login/data/datasources/login_remote_data_source.dart';
-import 'package:shop_app_clean/features/login/data/repositories/login_repository_impl.dart';
-import 'package:shop_app_clean/features/login/domain/repositories/login_repository.dart';
-import 'package:shop_app_clean/features/login/domain/usecases/login_usecase.dart';
-import 'package:shop_app_clean/features/login/presentation/bloc/login_bloc.dart';
-import 'package:shop_app_clean/features/register/data/datasources/register_remote_data_source.dart';
-import 'package:shop_app_clean/features/register/data/repositories/register_repository_impl.dart';
-import 'package:shop_app_clean/features/register/domain/repository/register_repository.dart';
-import 'package:shop_app_clean/features/register/domain/usecases/register_usecase.dart';
-import 'package:shop_app_clean/features/register/presentation/bloc/register_bloc.dart';
+import 'package:shop_app_clean/core/services/navigation_service.dart';
+import 'package:shop_app_clean/features/authenticate/data/datasources/login_remote_data_source/login_remote_data_source.dart';
+import 'package:shop_app_clean/features/authenticate/data/repositories/login_repository_impl/login_repository_impl.dart';
+import 'package:shop_app_clean/features/authenticate/domain/repositories/login_repsitory/login_repository.dart';
+import 'package:shop_app_clean/features/authenticate/domain/usecases/login_usecase/login_usecase.dart';
+import 'package:shop_app_clean/features/authenticate/presentation/login_bloc/login_bloc.dart';
+import 'package:shop_app_clean/features/authenticate/data/datasources/register_remote_data_source/register_remote_data_source.dart';
+import 'package:shop_app_clean/features/authenticate/data/repositories/register_repsitory/register_repository_impl.dart';
+import 'package:shop_app_clean/features/authenticate/domain/repositories/register_repository/register_repository.dart';
+import 'package:shop_app_clean/features/authenticate/domain/usecases/register_usecase/register_usecase.dart';
+import 'package:shop_app_clean/features/authenticate/presentation/bloc/register_bloc.dart';
 
 final sl = GetIt.instance;
 
 class ServicesLocator {
   void setupLocator() {
+    // Navigation
+    sl.registerLazySingleton(() => NavigationService());
     // Core
     sl.registerLazySingleton(() => DioClient());
 
