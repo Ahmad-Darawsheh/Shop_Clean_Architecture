@@ -19,7 +19,7 @@ class RouteGenerator {
 
       case RouteNames.REGISTER:
         return MaterialPageRoute(builder: (_) => const RegisterPage());
-        
+
       default:
         return _errorRoute();
     }

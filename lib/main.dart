@@ -5,7 +5,6 @@ import 'package:shop_app_clean/core/routes/route_generator.dart';
 import 'package:shop_app_clean/core/services/navigation_service.dart';
 import 'package:shop_app_clean/core/services/services_locator.dart';
 import 'package:shop_app_clean/core/styles/theme_data.dart';
-import 'package:shop_app_clean/features/authenticate/presentation/pages/login_page/login_page.dart';
 
 void main() {
   ServicesLocator().setupLocator();
@@ -24,7 +23,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Shop App',
       theme: Themes.mainTheme,
-      home: const LoginPage(),
     );
   }
 }

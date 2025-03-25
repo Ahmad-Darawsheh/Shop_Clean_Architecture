@@ -6,7 +6,7 @@ import 'package:shop_app_clean/features/authenticate/data/models/login_model/log
 class LoginRemoteDataSource {
   final DioClient dio;
   LoginRemoteDataSource({required this.dio});
-  
+
   Future<LoginModel> login(String email, String password) async {
     final response = await dio.post('login', data: {
       'email': email,

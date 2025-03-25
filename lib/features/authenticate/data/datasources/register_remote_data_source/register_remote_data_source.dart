@@ -23,11 +23,10 @@ class RegisterRemoteDataSource {
       'Content-Type': 'application/json'
     });
 
-      if (response['status'] == false) {
+    if (response['status'] == false) {
       throw ServerException(ErrorMessageModel.fromJson(response));
     } else {
       return RegisterModel.fromJson(response['data']);
     }
-    
   }
 }

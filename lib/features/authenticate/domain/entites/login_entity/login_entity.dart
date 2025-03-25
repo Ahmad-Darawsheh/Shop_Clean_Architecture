@@ -12,7 +12,7 @@ class LoginEntity extends Equatable {
 
   LoginEntity(
       {required this.email,
-     required this.name,
+      required this.name,
       required this.id,
       required this.phone,
       required this.image,
@@ -22,6 +22,5 @@ class LoginEntity extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props =>
-      [email, id, phone, image, points, credit, token];
+  List<Object?> get props => [email, id, phone, image, points, credit, token];
 }
