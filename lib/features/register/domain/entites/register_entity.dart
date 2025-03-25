@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 class RegisterEntity extends Equatable {
   final String email;
-  final String id;
+  final int id;
   final String name;
   final String phone;
   final String image;

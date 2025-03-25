@@ -10,7 +10,10 @@ class RegisterUseCase {
     required this.repository,
   });
   Future<Either<Failure, RegisterEntity>> register(
-      String email, String password, phone, String name) async {
+      {required String email,
+      required String password,
+      required String phone,
+      required String name}) async {
     return await repository.registerUser(
         email: email, password: password, phone: phone, name: name);
   }

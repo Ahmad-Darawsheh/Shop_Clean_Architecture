@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app_clean/core/services/services_locator.dart';
+import 'package:shop_app_clean/features/register/presentation/bloc/register_bloc.dart';
 import 'package:shop_app_clean/features/register/presentation/widgets/register_page_body.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -6,13 +9,16 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Create Account'),
-        centerTitle: true,
-      ),
-      body: const SingleChildScrollView(
-        child: RegisterPageBody(),
+    return BlocProvider(
+      create: (context) => sl<RegisterBloc>(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Create Account'),
+          centerTitle: true,
+        ),
+        body: const SingleChildScrollView(
+          child: RegisterPageBody(),
+        ),
       ),
     );
   }

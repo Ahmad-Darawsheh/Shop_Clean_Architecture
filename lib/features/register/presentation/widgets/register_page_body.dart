@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app_clean/features/register/presentation/bloc/register_bloc.dart';
 
 class RegisterPageBody extends StatelessWidget {
   const RegisterPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Controllers for form fields
-    final nameController = TextEditingController();
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-    final phoneController = TextEditingController();
+    var bloc = context.read<RegisterBloc>();
 
     return Padding(
       padding: const EdgeInsets.all(20.0),
@@ -38,7 +36,7 @@ class RegisterPageBody extends StatelessWidget {
 
           // Name field
           _buildTextFormField(
-            controller: nameController,
+            controller: bloc.nameController,
             label: 'Full Name',
             icon: Icons.person,
             keyboardType: TextInputType.name,
@@ -47,7 +45,7 @@ class RegisterPageBody extends StatelessWidget {
 
           // Email field
           _buildTextFormField(
-            controller: emailController,
+            controller: bloc.emailController,
             label: 'Email',
             icon: Icons.email,
             keyboardType: TextInputType.emailAddress,
@@ -56,7 +54,7 @@ class RegisterPageBody extends StatelessWidget {
 
           // Phone field
           _buildTextFormField(
-            controller: phoneController,
+            controller: bloc.phoneController,
             label: 'Phone Number',
             icon: Icons.phone,
             keyboardType: TextInputType.phone,
@@ -65,7 +63,7 @@ class RegisterPageBody extends StatelessWidget {
 
           // Password field
           _buildTextFormField(
-            controller: passwordController,
+            controller: bloc.passwordController,
             label: 'Password',
             icon: Icons.lock,
             isPassword: true,
@@ -75,14 +73,12 @@ class RegisterPageBody extends StatelessWidget {
           // Register button
           ElevatedButton(
             onPressed: () {
-              // TODO: Implement registration logic
-              // _register(
-              //   context: context,
-              //   name: nameController.text,
-              //   email: emailController.text,
-              //   password: passwordController.text,
-              //   phone: phoneController.text,
-              // );
+              bloc.add(RegisterUserEvent(
+                name: bloc.nameController.text,
+                email: bloc.emailController.text,
+                phone: bloc.phoneController.text,
+                password: bloc.passwordController.text,
+              ));
             },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 15),

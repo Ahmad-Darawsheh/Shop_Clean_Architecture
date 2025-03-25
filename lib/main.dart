@@ -1,10 +1,13 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app_clean/core/observer/bloc_observer.dart';
 import 'package:shop_app_clean/core/services/services_locator.dart';
 import 'package:shop_app_clean/core/styles/theme_data.dart';
 import 'package:shop_app_clean/features/login/presentation/pages/login_page.dart';
 
 void main() {
   ServicesLocator().setupLocator();
+  Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
 
