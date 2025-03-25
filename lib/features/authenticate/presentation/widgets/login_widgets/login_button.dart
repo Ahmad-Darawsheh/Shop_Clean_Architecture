@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app_clean/features/authenticate/presentation/login_bloc/login_bloc.dart';
+import 'package:shop_app_clean/features/authenticate/presentation/bloc/login_bloc/login_bloc.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({

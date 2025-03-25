@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app_clean/core/routes/route_names.dart';
 import 'package:shop_app_clean/core/services/navigation_service.dart';
 import 'package:shop_app_clean/core/services/services_locator.dart';
-import 'package:shop_app_clean/features/authenticate/presentation/bloc/register_bloc.dart';
+import 'package:shop_app_clean/core/validation/validators.dart';
+import 'package:shop_app_clean/features/authenticate/presentation/bloc/register_bloc/register_bloc.dart';
+import 'package:shop_app_clean/features/authenticate/presentation/widgets/register_widgets/register_button.dart';
+import 'package:shop_app_clean/features/authenticate/presentation/widgets/register_widgets/register_text_field.dart';
 
 class RegisterPageBody extends StatelessWidget {
   const RegisterPageBody({super.key});
@@ -37,59 +41,46 @@ class RegisterPageBody extends StatelessWidget {
           const SizedBox(height: 40),
 
           // Name field
-          _buildTextFormField(
+          buildTextFormField(
             controller: bloc.nameController,
             label: 'Full Name',
             icon: Icons.person,
             keyboardType: TextInputType.name,
+            validator: nameFieldCheck(bloc.nameController.text),
           ),
           const SizedBox(height: 20),
 
           // Email field
-          _buildTextFormField(
+          buildTextFormField(
             controller: bloc.emailController,
             label: 'Email',
             icon: Icons.email,
             keyboardType: TextInputType.emailAddress,
+            validator: emailFieldCheck(bloc.emailController.text),
           ),
           const SizedBox(height: 20),
 
           // Phone field
-          _buildTextFormField(
+          buildTextFormField(
             controller: bloc.phoneController,
             label: 'Phone Number',
             icon: Icons.phone,
             keyboardType: TextInputType.phone,
+            validator: phoneNumberFieldCheck(bloc.phoneController.text),
           ),
           const SizedBox(height: 20),
 
           // Password field
-          _buildTextFormField(
+          buildTextFormField(
             controller: bloc.passwordController,
             label: 'Password',
             icon: Icons.lock,
             isPassword: true,
+            validator: passwordFieldCheck(bloc.passwordController.text),
           ),
           const SizedBox(height: 30),
 
-          // Register button
-          ElevatedButton(
-            onPressed: () {
-              bloc.add(RegisterUserEvent(
-                name: bloc.nameController.text,
-                email: bloc.emailController.text,
-                phone: bloc.phoneController.text,
-                password: bloc.passwordController.text,
-              ));
-            },
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 15),
-            ),
-            child: const Text(
-              'Create Account',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
+          RegisterButton(bloc: bloc),
           const SizedBox(height: 20),
 
           // Login link
@@ -99,7 +90,8 @@ class RegisterPageBody extends StatelessWidget {
               const Text('Already have an account?'),
               TextButton(
                 onPressed: () {
-                  sl<NavigationService>().goBack();
+                  sl<NavigationService>()
+                      .navigateToAndRemoveUntil(RouteNames.LOGIN);
                 },
                 child: const Text('Log In'),
               ),
@@ -107,33 +99,6 @@ class RegisterPageBody extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildTextFormField({
-    required TextEditingController controller,
-    required String label,
-    required IconData icon,
-    TextInputType keyboardType = TextInputType.text,
-    bool isPassword = false,
-  }) {
-    return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: label,
-        prefixIcon: Icon(icon),
-        border: const OutlineInputBorder(),
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-      ),
-      obscureText: isPassword,
-      keyboardType: keyboardType,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter $label';
-        }
-        return null;
-      },
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:shop_app_clean/core/routes/route_names.dart';
 import 'package:shop_app_clean/core/services/navigation_service.dart';
 import 'package:shop_app_clean/core/services/services_locator.dart';
 import 'package:shop_app_clean/core/validation/validators.dart';
-import 'package:shop_app_clean/features/authenticate/presentation/login_bloc/login_bloc.dart';
+import 'package:shop_app_clean/features/authenticate/presentation/bloc/login_bloc/login_bloc.dart';
 import 'package:shop_app_clean/features/authenticate/presentation/widgets/login_widgets/custom_text_form_field.dart';
 import 'package:shop_app_clean/features/authenticate/presentation/widgets/login_widgets/forget_password_text.dart';
 import 'package:shop_app_clean/features/authenticate/presentation/widgets/login_widgets/login_button.dart';
@@ -22,7 +22,7 @@ class LoginPageBody extends StatelessWidget {
         if (state is LoginError) {
           _showErrorSnackBar(context, state.message, false);
         } else if (state is LoginSuccess) {
-          _showErrorSnackBar(context, 'Login is successful', true);
+          
           sl<NavigationService>().navigateTo(RouteNames.HOME);
         }
       },
@@ -57,7 +57,10 @@ class LoginPageBody extends StatelessWidget {
               const SizedBox(height: 20),
               CustomTextFormField(
                 validator: (value) {
-                  return passwordFieldCheck(value);
+                  if (value == null || value.isEmpty) {
+                    return 'The password must not be empty';
+                  }
+                  return null;
                 },
                 text: 'Password',
                 icon: Icons.password,

@@ -5,12 +5,12 @@ import 'package:shop_app_clean/features/authenticate/data/datasources/login_remo
 import 'package:shop_app_clean/features/authenticate/data/repositories/login_repository_impl/login_repository_impl.dart';
 import 'package:shop_app_clean/features/authenticate/domain/repositories/login_repsitory/login_repository.dart';
 import 'package:shop_app_clean/features/authenticate/domain/usecases/login_usecase/login_usecase.dart';
-import 'package:shop_app_clean/features/authenticate/presentation/login_bloc/login_bloc.dart';
+import 'package:shop_app_clean/features/authenticate/presentation/bloc/login_bloc/login_bloc.dart';
 import 'package:shop_app_clean/features/authenticate/data/datasources/register_remote_data_source/register_remote_data_source.dart';
 import 'package:shop_app_clean/features/authenticate/data/repositories/register_repsitory/register_repository_impl.dart';
 import 'package:shop_app_clean/features/authenticate/domain/repositories/register_repository/register_repository.dart';
 import 'package:shop_app_clean/features/authenticate/domain/usecases/register_usecase/register_usecase.dart';
-import 'package:shop_app_clean/features/authenticate/presentation/bloc/register_bloc.dart';
+import 'package:shop_app_clean/features/authenticate/presentation/bloc/register_bloc/register_bloc.dart';
 
 final sl = GetIt.instance;
 

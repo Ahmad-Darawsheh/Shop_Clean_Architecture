@@ -7,6 +7,7 @@ import 'package:shop_app_clean/features/authenticate/presentation/pages/register
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    // ignore: unused_local_variable
     final args = settings.arguments;
 
     switch (settings.name) {
