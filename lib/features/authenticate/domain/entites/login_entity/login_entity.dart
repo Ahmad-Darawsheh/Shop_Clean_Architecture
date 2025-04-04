@@ -10,7 +10,7 @@ class LoginEntity extends Equatable {
   final int credit;
   final String token;
 
-  LoginEntity(
+  const LoginEntity(
       {required this.email,
       required this.name,
       required this.id,

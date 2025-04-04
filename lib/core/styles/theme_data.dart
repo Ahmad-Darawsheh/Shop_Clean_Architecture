@@ -22,10 +22,6 @@ class Themes {
       onSurface: CustomColors.ON_SURFACE,
       surfaceTint: CustomColors.PRIMARY.withOpacity(0.05),
 
-      // Background colors
-      background: CustomColors.BACKGROUND,
-      onBackground: CustomColors.ON_BACKGROUND,
-
       // Error colors
       error: CustomColors.ERROR,
       onError: CustomColors.ON_ERROR,

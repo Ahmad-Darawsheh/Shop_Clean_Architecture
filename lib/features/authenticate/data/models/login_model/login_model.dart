@@ -1,7 +1,7 @@
 import 'package:shop_app_clean/features/authenticate/domain/entites/login_entity/login_entity.dart';
 
 class LoginModel extends LoginEntity {
-  LoginModel(
+  const LoginModel(
       {required super.email,
       required super.name,
       required super.id,

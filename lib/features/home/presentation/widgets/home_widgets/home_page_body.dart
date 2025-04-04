@@ -63,7 +63,7 @@ class HomePageBody extends StatelessWidget {
             onButtonPressed: () {
               // Navigate to collection page
             },
-            imagePath: 'assets/images/pattern.png',
+            
           ),
 
           // Categories section

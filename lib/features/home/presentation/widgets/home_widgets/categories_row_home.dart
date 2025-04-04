@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shop_app_clean/features/home/presentation/widgets/home_widgets/category_item_home.dart';
-
+import 'package:shop_app_clean/features/home/presentation/providers/home_products_provider.dart';
 class CategoriesRow extends StatelessWidget {
   final List<Map<String, dynamic>> categories;
   final Function(int)? onCategoryTap;
@@ -21,10 +22,18 @@ class CategoriesRow extends StatelessWidget {
         itemCount: categories.length,
         itemBuilder: (context, index) {
           final category = categories[index];
-          return CategoryItem(
-            name: category['name'] as String,
-            icon: category['icon'] as IconData,
-            onTap: onCategoryTap != null ? () => onCategoryTap!(index) : null,
+          return Consumer(
+            builder: (context, ref, child) {
+              
+              final homeProductsAsync = ref.watch(homeProductsProvider);
+              return CategoryItem(
+                // name: category['name'] as String,
+                name: homeProductsAsync.value?.products![index].name ?? 'Loading...',
+                icon: category['icon'] as IconData,
+                onTap:
+                    onCategoryTap != null ? () => onCategoryTap!(index) : null,
+              );
+            },
           );
         },
       ),

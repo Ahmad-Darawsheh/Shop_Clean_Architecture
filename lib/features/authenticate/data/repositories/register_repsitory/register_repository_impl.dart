@@ -1,14 +1,17 @@
 import 'package:dartz/dartz.dart';
 import 'package:shop_app_clean/core/error/exceptions.dart';
 import 'package:shop_app_clean/core/error/failures.dart';
+import 'package:shop_app_clean/features/authenticate/data/datasources/local_storage_data_source.dart';
 import 'package:shop_app_clean/features/authenticate/data/datasources/register_remote_data_source/register_remote_data_source.dart';
 import 'package:shop_app_clean/features/authenticate/domain/entites/register_entity/register_entity.dart';
 import 'package:shop_app_clean/features/authenticate/domain/repositories/register_repository/register_repository.dart';
 
 class RegisterRepositoryImpl implements RegisterRepository {
   RegisterRemoteDataSource registerRemoteDataSource;
+  final LocalStorageDataSource localStorageDataSource;
   RegisterRepositoryImpl({
     required this.registerRemoteDataSource,
+    required this.localStorageDataSource,
   });
 
   @override
