@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:shop_app_clean/core/error/exceptions.dart';
 import 'package:shop_app_clean/core/models/error_message_model.dart';
 import 'package:shop_app_clean/core/network/api_service.dart';

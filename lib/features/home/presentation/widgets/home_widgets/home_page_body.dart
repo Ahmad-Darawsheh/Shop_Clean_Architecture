@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app_clean/features/home/presentation/widgets/home_widgets/categories_row_home.dart';
 import 'package:shop_app_clean/features/home/presentation/widgets/home_widgets/featured_banner_home.dart';
+import 'package:shop_app_clean/features/home/presentation/widgets/home_widgets/featured_banners.dart';
 import 'package:shop_app_clean/features/home/presentation/widgets/home_widgets/products_grid_home.dart';
 import 'package:shop_app_clean/features/home/presentation/widgets/home_widgets/search_bar_home.dart';
 import 'package:shop_app_clean/features/home/presentation/widgets/home_widgets/section_title_home.dart';
@@ -57,52 +58,29 @@ class HomePageBody extends StatelessWidget {
           ),
 
           // Featured banner
-          FeaturedBanner(
-            title: 'Summer Collection',
-            subtitle: 'Up to 50% off',
-            onButtonPressed: () {
-              // Navigate to collection page
-            },
-            
-          ),
+          FeaturedRow(),
 
-          // Categories section
-          SectionTitle(
-            title: 'Categories',
-            onViewAllPressed: () {
-              // Navigate to all categories
-            },
-          ),
-          CategoriesRow(
-            categories: categories,
-            onCategoryTap: (index) {
-              // Navigate to category detail
-              print('Tapped category: ${categories[index]['name']}');
-            },
-          ),
-
-          // New arrivals section
-          SectionTitle(
-            title: 'New Arrivals',
-            onViewAllPressed: () {
-              // Navigate to all new arrivals
-            },
-          ),
-          ProductsGrid(
-            products: newArrivals,
-            onProductTap: (id) {
-              // Navigate to product detail
-              print('Tapped product id: $id');
-            },
-            onFavoriteToggle: (id) {
-              // Toggle favorite status
-              print('Toggle favorite for product id: $id');
-            },
-            onAddToCart: (id) {
-              // Add to cart
-              print('Add to cart product id: $id');
-            },
-          ),
+          // SectionTitle( 
+          //   title: 'New Arrivals',
+          //   onViewAllPressed: () {
+          //     // Navigate to all new arrivals
+          //   },
+          // ),
+          // ProductsGrid(
+           
+          //   onProductTap: (id) {
+          //     // Navigate to product detail
+          //     print('Tapped product id: $id');
+          //   },
+          //   onFavoriteToggle: (id) {
+          //     // Toggle favorite status
+          //     print('Toggle favorite for product id: $id');
+          //   },
+          //   onAddToCart: (id) {
+          //     // Add to cart
+          //     print('Add to cart product id: $id');
+          //   },
+          // ),
 
           // Popular products section
           SectionTitle(
@@ -112,17 +90,17 @@ class HomePageBody extends StatelessWidget {
             },
           ),
           ProductsGrid(
-            products: popularProducts,
+            
             onProductTap: (id) {
-              // Navigate to product detail
+             
               print('Tapped product id: $id');
             },
             onFavoriteToggle: (id) {
-              // Toggle favorite status
+              
               print('Toggle favorite for product id: $id');
             },
             onAddToCart: (id) {
-              // Add to cart
+              
               print('Add to cart product id: $id');
             },
           ),

@@ -2,25 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:shop_app_clean/core/styles/colors.dart';
 
 class FeaturedBanner extends StatelessWidget {
-  final String title;
-  final String subtitle;
+  final String? title;
+  final String? subtitle;
   final String buttonText;
   final VoidCallback? onButtonPressed;
-  final String? imagePath;
+  final String imagePath;
 
   const FeaturedBanner({
     super.key,
-    required this.title,
-    required this.subtitle,
+     this.title,
+     this.subtitle,
     this.buttonText = 'Shop Now',
     this.onButtonPressed,
-    this.imagePath,
+    required this.imagePath,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 180,
+      height: 600,
+      width: 300,
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -38,17 +39,13 @@ class FeaturedBanner extends StatelessWidget {
           Positioned.fill(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Opacity(
-                opacity: 0.1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: imagePath != null
-                        ? DecorationImage(
-                            image: AssetImage(imagePath!),
-                            fit: BoxFit.cover,
-                          )
-                        : null,
-                  ),
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(imagePath),
+                    fit: BoxFit.fill,
+                  )
+                      ,
                 ),
               ),
             ),
@@ -58,36 +55,24 @@ class FeaturedBanner extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  subtitle,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                ),
-                const Spacer(),
-                ElevatedButton(
-                  onPressed: onButtonPressed,
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: CustomColors.PRIMARY,
-                    backgroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 24, vertical: 12),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: Text(buttonText),
-                ),
+                // Text(
+                //   title,
+                //   style: const TextStyle(
+                //     color: Colors.white,
+                //     fontWeight: FontWeight.bold,
+                //     fontSize: 22,
+                //   ),
+                // ),
+                // const SizedBox(height: 8),
+                // Text(
+                //   subtitle,
+                //   style: const TextStyle(
+                //     color: Colors.white,
+                //     fontSize: 16,
+                //   ),
+                // ),
+                
+                
               ],
             ),
           ),

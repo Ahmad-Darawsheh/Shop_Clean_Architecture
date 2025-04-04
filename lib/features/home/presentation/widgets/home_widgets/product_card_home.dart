@@ -8,6 +8,7 @@ class ProductCard extends StatelessWidget {
   final bool isFavorite;
   final VoidCallback? onFavoriteToggle;
   final VoidCallback? onAddToCart;
+  final String imageUrl;
 
   const ProductCard({
     super.key,
@@ -18,6 +19,7 @@ class ProductCard extends StatelessWidget {
     this.isFavorite = false,
     this.onFavoriteToggle,
     this.onAddToCart,
+    required this.imageUrl,
   });
 
   @override
@@ -41,20 +43,13 @@ class ProductCard extends StatelessWidget {
           Stack(
             children: [
               Container(
-                height: 140,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(12)),
-                ),
-                child: Center(
-                  child: Icon(
-                    Icons.image,
-                    size: 60,
-                    color: Colors.grey[400],
+                  height: 140,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius:
+                        const BorderRadius.vertical(top: Radius.circular(12)),
                   ),
-                ),
-              ),
+                  child: Center(child: Image.network(imageUrl))),
               if (discount != null)
                 Positioned(
                   top: 8,

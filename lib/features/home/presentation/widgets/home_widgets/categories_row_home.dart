@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shop_app_clean/features/home/presentation/widgets/home_widgets/category_item_home.dart';
 import 'package:shop_app_clean/features/home/presentation/providers/home_products_provider.dart';
+
 class CategoriesRow extends StatelessWidget {
   final List<Map<String, dynamic>> categories;
   final Function(int)? onCategoryTap;
@@ -24,15 +25,22 @@ class CategoriesRow extends StatelessWidget {
           final category = categories[index];
           return Consumer(
             builder: (context, ref, child) {
-              
               final homeProductsAsync = ref.watch(homeProductsProvider);
-              return CategoryItem(
-                // name: category['name'] as String,
-                name: homeProductsAsync.value?.products![index].name ?? 'Loading...',
-                icon: category['icon'] as IconData,
-                onTap:
-                    onCategoryTap != null ? () => onCategoryTap!(index) : null,
-              );
+              return homeProductsAsync.when(data: (data) {
+                return CategoryItem(
+                  // name: category['name'] as String,
+                  name: '${homeProductsAsync.value?.banners![index].id}' ??
+                      'Loading...',
+                  icon: category['icon'] as IconData,
+                  onTap: onCategoryTap != null
+                      ? () => onCategoryTap!(index)
+                      : null,
+                );
+              }, error: (error, StackTrace stackTrace) {
+                return Text("Error: $error");
+              }, loading: () {
+                return const Center(child: CircularProgressIndicator());
+              });
             },
           );
         },
