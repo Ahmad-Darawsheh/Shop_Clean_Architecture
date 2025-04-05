@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shop_app_clean/features/home/presentation/providers/home_products_provider.dart';
+import 'package:shop_app_clean/features/home/presentation/providers/products/home_products_provider.dart';
 import 'package:shop_app_clean/features/home/presentation/widgets/home_widgets/featured_banner_home.dart';
 
 class FeaturedRow extends StatelessWidget {

@@ -7,7 +7,7 @@ import 'package:shop_app_clean/features/home/domain/usecases/home_products_use_c
 class HomeProductsNotifier extends AsyncNotifier<HomeProductEntity> {
   @override
   Future<HomeProductEntity> build() async {
-    final homeProductsUseCase = GetIt.I<HomeProductsUseCase>();
+    final homeProductsUseCase = GetIt.I<HomeUseCases>();
     final result = await homeProductsUseCase.getHomeProducts();
 
     return result.fold(
@@ -17,7 +17,3 @@ class HomeProductsNotifier extends AsyncNotifier<HomeProductEntity> {
   }
 }
 
-final homeProductsProvider =
-    AsyncNotifierProvider<HomeProductsNotifier, HomeProductEntity>(() {
-  return HomeProductsNotifier();
-});

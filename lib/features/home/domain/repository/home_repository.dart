@@ -4,4 +4,7 @@ import 'package:shop_app_clean/features/home/domain/entity/product_entity/home_p
 
 abstract class HomeRepository {
   Future<Either<Failure, HomeProductEntity>> getHomeProducts();
+
+  Future<Either<Failure, void>> setProductToFavorite(
+      int categoryId);
 }

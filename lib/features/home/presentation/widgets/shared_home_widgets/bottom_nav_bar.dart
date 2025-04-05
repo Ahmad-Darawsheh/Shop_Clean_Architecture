@@ -18,7 +18,7 @@ class BottomNavBarHome extends StatelessWidget {
           onTap: (value) {
             bloc.add(BottomNavBarSwitchEvent(value));
           },
-          currentIndex: bloc.navBarIndex,
+          currentIndex: bloc.navBarIndex == -1 ? 0 : bloc.navBarIndex,
           items: bloc.items,
         );
       },

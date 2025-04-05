@@ -15,3 +15,12 @@ final class BottomNavBarSwitchEvent extends HomeEvent {
   @override
   List<Object> get props => [index];
 }
+
+final class FavoriteItemEvent extends HomeEvent {
+  final int id;
+   
+   const FavoriteItemEvent(this.id);
+
+  @override
+  List<Object> get props => [id];
+}

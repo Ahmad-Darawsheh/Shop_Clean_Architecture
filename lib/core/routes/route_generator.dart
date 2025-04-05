@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app_clean/core/routes/route_names.dart';
+import 'package:shop_app_clean/features/favorites/presentation/pages/favorites_page.dart';
 import 'package:shop_app_clean/features/home/presentation/pages/home_page.dart';
 import 'package:shop_app_clean/features/authenticate/presentation/pages/login_page/login_page.dart';
 import 'package:shop_app_clean/features/authenticate/presentation/pages/register_page/register_page.dart';
+import 'package:shop_app_clean/features/profile/presentation/pages/profile_page.dart';
 // import other pages
 
 class RouteGenerator {
@@ -19,6 +21,12 @@ class RouteGenerator {
 
       case RouteNames.REGISTER:
         return MaterialPageRoute(builder: (_) => const RegisterPage());
+
+      case RouteNames.FAVORITES:
+        return MaterialPageRoute(builder: (_) => const FavoritesPage());
+
+      case RouteNames.PROFILE:
+        return MaterialPageRoute(builder: (_) => const ProfilePage());
 
       default:
         return _errorRoute();

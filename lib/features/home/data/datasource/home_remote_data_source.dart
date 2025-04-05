@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:shop_app_clean/core/error/exceptions.dart';
 import 'package:shop_app_clean/core/models/error_message_model.dart';
 import 'package:shop_app_clean/core/network/api_service.dart';
@@ -17,11 +19,27 @@ class HomeRemoteDataSource {
       'Content-Type': 'application/json',
       'Authorization': localStorageDataSource.getToken()
     });
-   
+
     if (response['status'] == false) {
       throw ServerException(ErrorMessageModel.fromJson(response));
     } else {
       return HomeProductModel.fromJson(response['data']);
+    }
+  }
+
+  Future<void> setFavoriteProduct(int productId) async {
+    log(localStorageDataSource.getToken().toString());
+    final response = await dio.post('favorites', headers: {
+      'lang': 'en',
+      'Content-Type': 'application/json',
+      'Authorization':await localStorageDataSource.getToken()
+    }, data: {
+      'product_id': productId
+    });
+    if (response['status'] == false) {
+      throw ServerException(ErrorMessageModel.fromJson(response));
+    } else {
+      log('good');
     }
   }
 }

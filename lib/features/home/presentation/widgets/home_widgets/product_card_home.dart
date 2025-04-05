@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app_clean/features/home/presentation/bloc/home_bloc.dart';
 
 class ProductCard extends StatelessWidget {
   final int id;
   final String name;
   final double price;
   final int? discount;
-  final bool isFavorite;
-  final VoidCallback? onFavoriteToggle;
+  final bool initialIsFavorite; // Use initialIsFavorite
   final VoidCallback? onAddToCart;
   final String imageUrl;
 
@@ -16,14 +17,14 @@ class ProductCard extends StatelessWidget {
     required this.name,
     required this.price,
     this.discount,
-    this.isFavorite = false,
-    this.onFavoriteToggle,
+    this.initialIsFavorite = false,
     this.onAddToCart,
     required this.imageUrl,
   });
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<HomeBloc>();
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -39,18 +40,18 @@ class ProductCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Product image area with discount tag if applicable
           Stack(
             children: [
               Container(
-                  height: 140,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(12)),
-                  ),
-                  child: Center(child: Image.network(imageUrl))),
-              if (discount != null)
+                height: 140,
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(12)),
+                ),
+                child: Center(child: Image.network(imageUrl)),
+              ),
+              if (discount != null && discount! > 0)
                 Positioned(
                   top: 8,
                   left: 8,
@@ -75,25 +76,39 @@ class ProductCard extends StatelessWidget {
                 top: 8,
                 right: 8,
                 child: GestureDetector(
-                  onTap: onFavoriteToggle,
-                  child: Container(
-                    padding: const EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      isFavorite ? Icons.favorite : Icons.favorite_border,
-                      size: 20,
-                      color: isFavorite ? Colors.red : Colors.grey,
-                    ),
+                  onTap: () {
+                    bloc.add(
+                        FavoriteItemEvent(id)); // Use initialIsFavorite here
+                  },
+                  child: BlocBuilder<HomeBloc, HomeState>(
+                    // Use BlocBuilder for immediate UI update
+                    buildWhen: (previous, current) =>
+                        current is FavoriteProductLoadingState ||
+                        current is FavoriteProductSuccessState ||
+                        current is FavoriteProductFailureState,
+                    builder: (context, state) {
+                      return Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          bloc.favoriteItems[id]!
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          size: 20,
+                          color: bloc.favoriteItems[id]!
+                              ? Colors.red
+                              : Colors.grey,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
             ],
           ),
-
-          // Product details
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -117,7 +132,7 @@ class ProductCard extends StatelessWidget {
                         color: Colors.green,
                       ),
                     ),
-                    if (discount != null) ...[
+                    if (discount != null && discount! > 0) ...[
                       const SizedBox(width: 4),
                       Text(
                         '\$${(price * (1 + discount! / 100)).toStringAsFixed(2)}',

@@ -22,7 +22,7 @@ class LoginPageBody extends StatelessWidget {
         if (state is LoginError) {
           _showErrorSnackBar(context, state.message, false);
         } else if (state is LoginSuccess) {
-          sl<NavigationService>().navigateTo(RouteNames.HOME);
+          sl<NavigationService>().navigateToAndRemoveUntil(RouteNames.HOME);
         }
       },
       child: Padding(

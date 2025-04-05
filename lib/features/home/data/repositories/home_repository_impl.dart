@@ -11,8 +11,18 @@ class HomeRepositoryImpl extends HomeRepository {
   Future<Either<Failure, HomeProductEntity>> getHomeProducts() async {
     try {
       final response = await homeRemoteDataSource.getHomeProducts();
-      
+
       return Right(response.toHomeProductEntity());
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> setProductToFavorite(int categoryId) async {
+    try {
+       homeRemoteDataSource.setFavoriteProduct(categoryId);
+      return Right(true);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }
