@@ -22,6 +22,11 @@ import 'package:shop_app_clean/features/home/data/repositories/home_repository_i
 import 'package:shop_app_clean/features/home/domain/repository/home_repository.dart';
 import 'package:shop_app_clean/features/home/domain/usecases/home_products_use_case.dart';
 import 'package:shop_app_clean/features/home/presentation/bloc/home_bloc.dart';
+import 'package:shop_app_clean/features/profile/data/data_source/edit_profile_remote_data_source.dart';
+import 'package:shop_app_clean/features/profile/data/repository/edit_profile_impl_repository.dart';
+import 'package:shop_app_clean/features/profile/domain/repository/edit_profile_base_repository.dart';
+import 'package:shop_app_clean/features/profile/domain/usecase/edit_profile_usecase.dart';
+import 'package:shop_app_clean/features/profile/presentation/controller/bloc/edit_profile_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -36,6 +41,9 @@ class ServicesLocator {
     sl.registerLazySingleton(() => NavigationService());
     // Core
     sl.registerLazySingleton(() => DioClient());
+    //CacheHelper
+
+    // sl.registerLazySingleton(() => CacheHelper());
 
     // Data Sources
     sl.registerLazySingleton(() => LoginRemoteDataSource(dio: sl()));
@@ -81,5 +89,17 @@ class ServicesLocator {
     sl.registerLazySingleton(() => FavoritesUseCase(favoritesRepository: sl()));
 
     sl.registerLazySingleton(() => FavoritesBloc(favoritesUseCase: sl()));
+
+    //Registering stuff for Edit Profile
+
+    sl.registerLazySingleton(() =>
+        EditProfileRemoteDataSource(dio: sl(), localStorageDataSource: sl()));
+
+    sl.registerLazySingleton<EditProfileBaseRepository>(
+        () => EditProfileImplRepository(sl()));
+
+    sl.registerLazySingleton(() => EditProfileUseCase(sl()));
+
+    sl.registerLazySingleton(() => EditProfileBloc(editProfileUseCase: sl()));
   }
 }

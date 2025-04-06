@@ -14,10 +14,6 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeUseCases homeUseCase;
   HomeBloc({required this.homeUseCase}) : super(HomeInitial()) {
-    on<HomeEvent>((event, emit) {
-      // TODO: implement event handler
-    });
-
     on<BottomNavBarSwitchEvent>(_onBottomNavBarSwitchEvent);
 
     on<FavoriteItemEvent>(_onFavoriteItemEvent);
@@ -42,7 +38,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   int navBarIndex = -1;
 
-  
   Future<void> _onBottomNavBarSwitchEvent(
       BottomNavBarSwitchEvent event, Emitter<HomeState> emit) async {
     emit(NavBarSwitchLoadingState());
@@ -72,7 +67,5 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       favoriteItems[event.id] = favoriteItems[event.id]!;
       emit(FavoriteProductFailureState(e.toString()));
     }
-
   }
-
 }
